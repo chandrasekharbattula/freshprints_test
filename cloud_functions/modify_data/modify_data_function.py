@@ -85,11 +85,11 @@ def insert_data_to_postgres(employee_table_data):
             cursor.executemany("""
                 UPDATE employee_details 
                     SET employee_first_name =  %(employee_first_name)s,
-                    SET employee_last_name = %(employee_last_name)s,
-                    SET employee_doj =  %(employee_doj)s,
-                    SET employee_salary = %(employee_salary)s,
-                    SET employee_age = %(employee_age)s,
-                    SET employee_salary_currency = %(employee_salary_currency)s
+                        employee_last_name = %(employee_last_name)s,
+                        employee_doj =  %(employee_doj)s,
+                        employee_salary = %(employee_salary)s,
+                        employee_age = %(employee_age)s,
+                        employee_salary_currency = %(employee_salary_currency)s
                     WHERE employee_id = %(employee_id)s ;
             """, employee_table_data)
             connection.commit()

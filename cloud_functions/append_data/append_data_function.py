@@ -62,7 +62,7 @@ def get_google_sheet_data(fetch_data_from):
                         employees_data_as_json.append(employee_data)
         except GoogleCloudError as e:
             logging.error("Error in querying the data from table ", str(e))
-            return abort(500, json.dumps({"status": "Failed", "message": "Finished with error. Check Logs for more "
+            return abort(500, json.dumps({"status": "FAILED", "message": "Finished with error. Check Logs for more "
                                                                          "details"}))
         else:
             logging.info("DONE! Read {} rows from the table {}".format(table.num_rows, table_name))
@@ -96,7 +96,7 @@ def insert_data_to_postgres(employee_table_data):
             logging.info(cursor.rowcount, "Records inserted successfully into employee_details table")
     except Exception as e:
         logging.error("Error in inserting data to postgres instance", str(e))
-        return abort(500, json.dumps({"status": "Failed", "message": "Finished with error. Check Logs for more "
+        return abort(500, json.dumps({"status": "FAILED", "message": "Finished with error. Check Logs for more "
                                                                      "details"}))
     finally:
         if connection:
@@ -113,5 +113,5 @@ def get_secret():
         return response.payload.data.decode("UTF-8")
     except GoogleCloudError as e:
         logging.error("Error in getting the secret value", str(e))
-        return abort(500, json.dumps({"status": "Failed", "message": "Finished with error. Check Logs for more "
+        return abort(500, json.dumps({"status": "FAILED", "message": "Finished with error. Check Logs for more "
                                                                      "details"}))

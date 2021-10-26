@@ -23,6 +23,7 @@ with airflow.models.DAG(**dag_params) as dag:
         task_id='insert_data_task',
         method='POST',
         endpoint='insert-data-function',
+        response_check=lambda response: "Success" in response.text,
         log_response=True
     )
 
@@ -31,6 +32,7 @@ with airflow.models.DAG(**dag_params) as dag:
         task_id='delete_existing_data_task',
         method='POST',
         endpoint='delete-data-function',
+        response_check=lambda response: "Success" in response.text,
         log_response=True
     )
 
@@ -41,6 +43,7 @@ with airflow.models.DAG(**dag_params) as dag:
         endpoint='append-data-function',
         data=json.dumps({"fetch_from": '{{ prev_execution_date }}'}),
         headers={"Content-Type": "application/json"},
+        response_check=lambda response: "Success" in response.text,
         log_response=True
     )
 
@@ -49,6 +52,7 @@ with airflow.models.DAG(**dag_params) as dag:
         task_id='modify_existing_data_task',
         method='POST',
         endpoint='modify-data-function',
+        response_check=lambda response: "Success" in response.text,
         log_response=True
     )
 
