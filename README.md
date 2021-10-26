@@ -26,6 +26,14 @@ instance </p>
 
 <p> The complete solution to this task along with the GCP services used and the source code is present in this repo </p>
 
+<p> The GCP Services that are used to complete this task are :</p>
+
+    * Bigquery - External Table (To access the google sheet).
+    * Cloud SQL - PostgresSQL instance.
+    * Security Manager - To store and access the PostgresSQL secrets.
+    * Cloud Functions - To execute the individual tasks of of the ETL pipeline.
+    * Cloud Composer - To schedule and orchestrate the ETL pipeline.
+
 <p> Below are the details of folders in this repo. </p>
 
 * /airflow - This folder contains the python code for the Airflow DAG that is used to schedule and orchestrate the ETL Pipeline. 
